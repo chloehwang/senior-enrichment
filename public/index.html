@@ -1,9 +1,18 @@
 <!doctype html>
 <html>
   <head>
+    <title>My Academy</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- we get the bootstrap css file first -->
+    <link href="./bootstrap/bootstrap.min.css" rel="stylesheet">
+    <!-- and then our own - allowing us to overwrite a given rule bootstrap already defined -->
+    <link href="./stylesheets/style.css" rel="stylesheet">
   </head>
   <body>
     <div id="main"></div>
-    <script async defer src="/bundle.js"></script>    
+    <script src="./jquery/jquery-3.1.1.min.js"></script>
+    <script src="./bootstrap/bootstrap.min.js"></script>
+    <script async defer src="/bundle.js"></script>
   </body>
-</html> 
+</html>
