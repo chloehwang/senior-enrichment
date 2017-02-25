@@ -12,6 +12,7 @@ export default function(props) {
           <ControlLabel>Name</ControlLabel>
           <FormControl type="text" placeholder="Zenon Kar" name="name" />
           { inputCheck.invalidName && <HelpBlock>Name cannot be blank.</HelpBlock> }
+          <FormControl.Feedback />
         </FormGroup>
 
         { props.type === "student" && (
@@ -20,15 +21,17 @@ export default function(props) {
             <ControlLabel>Email</ControlLabel>
             <FormControl type="text" placeholder="stargazer@school.edu" name="email" />
             { inputCheck.invalidEmail && <HelpBlock>Must be a valid email.</HelpBlock> }
+            <FormControl.Feedback />
           </FormGroup>
 
           <FormGroup>
             <ControlLabel>Campus</ControlLabel>
-            <FormControl componentClass="select" placeholder="Select a School" name="campus">
-              { props.campuses && props.campuses.map(campus =>
-                <option key={campus.id} value={campus.id}>{campus.name}</option>
-              ) }
+            <FormControl componentClass="select" placeholder="Select a School" name="campus" >
+            { props.campuses && props.campuses.map(campus =>
+              <option key={campus.id} value={campus.id}>{campus.name}</option>
+            ) }
             </FormControl>
+            <FormControl.Feedback />
           </FormGroup>
         </div>
         )}
@@ -62,11 +65,12 @@ export default function(props) {
 
         <FormGroup validationState={inputCheck.invalidSpecialties}>
           <ControlLabel>Specialties</ControlLabel>
-          <FormControl type="text" placeholder="Javascript, frontend, intergalactic networks, etc." name="specialties"/>
+          <FormControl type="text" placeholder="Javascript, frontend, intergalactic networks, etc." name="specialties" />
           { inputCheck.invalidSpecialties && <HelpBlock>Specialties cannot be blank.</HelpBlock> }
+          <FormControl.Feedback />
         </FormGroup>
 
-        <Button type="submit">
+        <Button bsStyle="primary" type="submit">
           Submit
         </Button>
 

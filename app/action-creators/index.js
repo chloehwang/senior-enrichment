@@ -30,7 +30,6 @@ export const removeCampus = (id) => {
   }
 }
 
-
 export const createCampus = (body) => {
   return (dispatch) => {
     axios.post('/api/campus', body)
@@ -47,10 +46,6 @@ export const deleteCampus = (id) => {
   return (dispatch) => {
     axios.delete(`/api/campus/${id}`)
          .then(() => dispatch(removeCampus(id)))
-        //  .then(action => {  //dispatch RETURNS the action object
-        //     const path = `/campus/${action.campus.id}`;
-        //     browserHistory.push(path);
-        //  })
          .catch(console.error)
     }
 }
@@ -78,6 +73,12 @@ export const addStudent = (student) => {
   }
 }
 
+export const removeStudent = (id) => {
+  return {
+    type: "REMOVE_STUDENT",
+    id
+  }
+}
 
 export const createStudent = (body) => {
   return (dispatch) => {
@@ -91,3 +92,10 @@ export const createStudent = (body) => {
     }
 }
 
+export const deleteStudent = (id) => {
+  return (dispatch) => {
+    axios.delete(`/api/student/${id}`)
+         .then(() => dispatch(removeStudent(id)))
+         .catch(console.error)
+    }
+}

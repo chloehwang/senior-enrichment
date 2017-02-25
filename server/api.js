@@ -48,4 +48,10 @@ api.get('/student/:id', function(req, res, next) {
 		.catch(next)
 })
 
+api.delete('/student/:id', function(req, res, next) {
+	Student.destroy({where: { id: req.params.id }})
+		.then(() => res.send())
+		.catch(next)
+})
+
 module.exports = api

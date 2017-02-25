@@ -54,6 +54,10 @@ const studentReducer = (state = studentInitialState, action) => {
       newState.students = [...newState.students, action.student];
       break;
 
+    case "REMOVE_STUDENT":
+      newState.students = newState.students.filter(student => student.id !== +action.id)
+      break;
+
     default: return state
   }
 

@@ -3,12 +3,13 @@ import { connect } from 'react-redux'
 import { Grid, Row, Col } from 'react-bootstrap';
 import AdminEditInput from '../components/AdminEditInput'
 import List from '../components/List'
-import { createCampus, createStudent, deleteCampus } from '../action-creators'
+import { createCampus, createStudent, deleteCampus, deleteStudent } from '../action-creators'
 
 export default connect(
   (state, ownProps) => {
     return {
       campuses: state.campus.campuses,
+      students: state.student.students,
       type: ownProps.params.type
     }
   },
@@ -18,9 +19,10 @@ export default connect(
         if (type === "campus") dispatch(createCampus(body))
         else {dispatch(createStudent(body))}
       },
-      handleDelete: function (e) {
+      handleDelete: function (e, type) {
         e.preventDefault();
-        dispatch(deleteCampus(e.target.value))
+        if (type === "campus") dispatch(deleteCampus(e.target.value))
+        else {dispatch(deleteStudent(e.target.value))}
       }
     }
   }
@@ -66,32 +68,13 @@ export default connect(
     }
 
     render() {
-      const title = this.props.type.slice(0,1).toUpperCase() + this.props.type.slice(1);
+      const type = this.props.type;
+      const title = type.slice(0,1).toUpperCase() + type.slice(1);
+      const listItems = type === "campus" ? this.props.campuses : this.props.students;
 
       return (
         <div className="body">
-          <Grid>
-            <Row className="show-grid">
-              <Col sm={12} md={6}>
-                <h2>Create a {title}</h2>
-                <AdminEditInput
-                  handleInput={this.handleInput}
-                  type={this.props.type}
-                  state={this.state}
-                  campuses={this.props.campuses}
-                />
-              </Col>
-              <Col sm={12} md={6}>
-                <h2>Edit a {title}</h2>
-                <List
-                  listItems={this.props.campuses}
-                  handleDelete={this.props.handleDelete}
-                  isAdmin={true}
-                  type="campus"
-                />
-              </Col>
-            </Row>
-          </Grid>
+          { this.props.children && React.cloneElement(this.props.children, this.props) }
         </div>
         )
     }
