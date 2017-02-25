@@ -2,7 +2,8 @@ import { combineReducers } from 'redux'
 
 //CAMPUS REDUCER
 const campusInitialState = {
-  campuses: []
+  campuses: [],
+  selectedCampus: {}
 }
 
 const campusReducer = (state = campusInitialState, action) => {
@@ -11,6 +12,14 @@ const campusReducer = (state = campusInitialState, action) => {
   switch (action.type) {
     case "RECEIVE_CAMPUSES":
       newState.campuses = action.campuses;
+      break;
+
+    case "ADD_CAMPUS":
+      newState.campuses = [...newState.campuses, action.campus];
+      break;
+
+    case "RECEIVE_CAMPUS":
+      newState.selectedCampus = action.campus;
       break;
 
     default: return state
@@ -30,6 +39,10 @@ const studentReducer = (state = studentInitialState, action) => {
   switch (action.type) {
     case "RECEIVE_STUDENTS":
       newState.students = action.students;
+      break;
+
+    case "ADD_STUDENT":
+      newState.students = [...newState.students, action.student];
       break;
 
     default: return state

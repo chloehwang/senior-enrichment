@@ -8,15 +8,15 @@ module.exports = db.define('campus', {
     type: Sequelize.STRING,
     allowNull: false
   },
-  cityNum: Sequelize.STRING(3),
+  city: Sequelize.STRING(3),
   planet: Sequelize.STRING,
   image: {
     type: Sequelize.STRING,
     defaultValue: '/img/planet.png'
   },
-  about: Sequelize.TEXT,
+  descript: Sequelize.TEXT,
   specialties: {
-    type: Sequelize.ARRAY(Sequelize.STRING),
+    type: Sequelize.STRING,
     allowNull: false
   }
 })

@@ -4,7 +4,7 @@ import { Grid, Row, Col } from 'react-bootstrap';
 export default function(props) {
 
   const toDisplay = props.cards && props.cards.map((card, i) =>
-    <Col sm={12} md={6} key={i}><br />{card}</Col>)
+    <Col sm={props.sm} md={props.md} key={i}><br />{card}</Col>)
 
   return (
     <div>

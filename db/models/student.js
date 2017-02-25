@@ -12,15 +12,15 @@ module.exports = db.define('student', {
     type: Sequelize.STRING,
     isEmail: true
   },
-  cityNum: Sequelize.STRING(3),
+  city: Sequelize.STRING(3),
   planet: Sequelize.STRING,
   image: {
     type: Sequelize.STRING,
     defaultValue: '/img/student.png'
   },
-  bio: Sequelize.TEXT,
-  interests: {
-    type: Sequelize.ARRAY(Sequelize.STRING),
+  descript: Sequelize.TEXT,
+  specialties: {
+    type: Sequelize.STRING,
     allowNull: false
   }
 })

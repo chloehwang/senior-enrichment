@@ -31,7 +31,7 @@ export default () => {
               <LinkContainer to="/admin/campus">
                 <MenuItem eventKey={3.1}>View Campus</MenuItem>
               </LinkContainer>
-              <LinkContainer to="/admin/students">
+              <LinkContainer to="/admin/student">
                 <MenuItem eventKey={3.2}>View Student</MenuItem>
               </LinkContainer>
             </NavDropdown>

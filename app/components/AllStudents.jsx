@@ -8,8 +8,8 @@ export default function(props) {
       <Panel key={student.id}>
         <img className="img-responsive" src={student.image} />
         <h3>{student.name}</h3>
-        <p>Address: {student.cityNum}-{student.planet}<br />
-           Interests: {student.interests}
+        <p>Address: {student.city}-{student.planet}<br />
+           Interests: {student.specialties}
         </p>
         <Button>View Student's Campus</Button>
       </Panel>
