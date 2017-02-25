@@ -7,7 +7,7 @@ export default function(props) {
   const campusCards = props.campuses && props.campuses.map(campus => {
     return (
       <Panel key={campus.id}>
-        <img className="img-responsive" src={campus.image} />
+        <img className="img-small" src={campus.image} />
         <h3><Link to={`campus/${campus.id}`}>{campus.name}</Link></h3>
         <p>Address: {campus.city}-{campus.planet}<br />
            Specialties: {campus.specialties}

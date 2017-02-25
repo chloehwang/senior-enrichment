@@ -8,7 +8,7 @@ export default function(props) {
   const student = props.selected;
   const studentCard = student && [(
       <Panel key={student.id}>
-        <img className="img-responsive" src={student.image} />
+        <img className="img-small" src={student.image} />
         <Table responsive className="table">
           <tbody>
             <tr>
