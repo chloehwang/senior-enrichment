@@ -2,25 +2,23 @@ import React from 'react';
 import { FormGroup, ControlLabel, FormControl, HelpBlock, Button } from 'react-bootstrap';
 
 export default function(props) {
-  const inputCheck = props.state;
-
   return (
     <div>
       <form onSubmit={props.handleInput}>
 
-        <FormGroup validationState={inputCheck.invalidName}>
+        <FormGroup validationState={props.invalidName}>
           <ControlLabel>Name</ControlLabel>
           <FormControl type="text" placeholder="Zenon Kar" name="name" />
-          { inputCheck.invalidName && <HelpBlock>Name cannot be blank.</HelpBlock> }
+          { props.invalidName && <HelpBlock>Name cannot be blank.</HelpBlock> }
           <FormControl.Feedback />
         </FormGroup>
 
         { props.type === "student" && (
         <div>
-          <FormGroup validationState={inputCheck.invalidEmail}>
+          <FormGroup validationState={props.invalidEmail}>
             <ControlLabel>Email</ControlLabel>
             <FormControl type="text" placeholder="stargazer@school.edu" name="email" />
-            { inputCheck.invalidEmail && <HelpBlock>Must be a valid email.</HelpBlock> }
+            { props.invalidEmail && <HelpBlock>Must be a valid email.</HelpBlock> }
             <FormControl.Feedback />
           </FormGroup>
 
@@ -63,10 +61,10 @@ export default function(props) {
           <FormControl componentClass="textarea" name="descript"/>
         </FormGroup>
 
-        <FormGroup validationState={inputCheck.invalidSpecialties}>
+        <FormGroup validationState={props.invalidSpecs}>
           <ControlLabel>Specialties</ControlLabel>
           <FormControl type="text" placeholder="Javascript, frontend, intergalactic networks, etc." name="specialties" />
-          { inputCheck.invalidSpecialties && <HelpBlock>Specialties cannot be blank.</HelpBlock> }
+          { props.invalidSpecs && <HelpBlock>Specialties cannot be blank.</HelpBlock> }
           <FormControl.Feedback />
         </FormGroup>
 

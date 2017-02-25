@@ -52,10 +52,7 @@ render(
         <Route path='campus/:campusId' component={SingleCampusContainer} onEnter={loadSingleCampus} />
         <Route path='students' component={StudentContainer} />
         <Route path='student/:studentId' component={SingleStudentContainer} onEnter={loadSingleStudent} />
-        <Route path='admin' component={AdminContainer} >
-          {/*<Route path=':type' component={AdminHome} />
-          <Route path=':type/edit/:id' component={EditContainer} />*/}
-        </Route>
+        <Route path='admin/:type' component={AdminContainer} />
       </Route>
     </Router>
   </Provider>,

@@ -9,7 +9,7 @@ const rows = props.listItems && props.listItems.map(item => {
   return (
     <tr key={item.id}>
       <td>{item.id}</td>
-      <td><Link to={`/edit/${props.type}/${item.id}`}>{item.name}</Link></td>
+      <td><Link to={`/${props.type}/${item.id}`}>{item.name}</Link></td>
       <td>{ props.isAdmin ?
         <button
           className="btn btn-xs btn-danger"

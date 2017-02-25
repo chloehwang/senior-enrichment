@@ -1,9 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Grid, Row, Col } from 'react-bootstrap';
-import AdminEditInput from '../components/AdminEditInput'
-import List from '../components/List'
 import { createCampus, createStudent, deleteCampus, deleteStudent } from '../action-creators'
+import AdminHome from '../components/AdminHome'
 
 export default connect(
   (state, ownProps) => {
@@ -31,7 +29,7 @@ export default connect(
       super()
       this.state = {
         invalidName: null,
-        invalidSpecialties: null,
+        invalidSpecs: null,
         invalidEmail: null
       }
       this.handleInput = this.handleInput.bind(this);
@@ -52,7 +50,7 @@ export default connect(
 
       if (!name || !specialties) {
         if (!name) this.setState({invalidName: "error"})
-        if (!specialties) this.setState({invalidSpecialties: "error"})
+        if (!specialties) this.setState({invalidSpecs: "error"})
         invalid = true;
       }
 
@@ -68,13 +66,17 @@ export default connect(
     }
 
     render() {
-      const type = this.props.type;
-      const title = type.slice(0,1).toUpperCase() + type.slice(1);
-      const listItems = type === "campus" ? this.props.campuses : this.props.students;
 
       return (
         <div className="body">
-          { this.props.children && React.cloneElement(this.props.children, this.props) }
+          <AdminHome
+            type={this.props.type}
+            campuses={this.props.campuses}
+            students={this.props.students}
+            handleInput={this.handleInput}
+            handleDelete={this.props.handleDelete}
+            inputCheck={this.state}
+          />
         </div>
         )
     }
