@@ -22,6 +22,10 @@ const campusReducer = (state = campusInitialState, action) => {
       newState.selectedCampus = action.campus;
       break;
 
+    case "REMOVE_CAMPUS":
+      newState.campuses = newState.campuses.filter(campus => campus.id !== +action.id)
+      break;
+
     default: return state
   }
 
@@ -30,7 +34,8 @@ const campusReducer = (state = campusInitialState, action) => {
 
 //STUDENT REDUCER
 const studentInitialState = {
-  students: []
+  students: [],
+  selectedStudent: {}
 }
 
 const studentReducer = (state = studentInitialState, action) => {
@@ -39,6 +44,10 @@ const studentReducer = (state = studentInitialState, action) => {
   switch (action.type) {
     case "RECEIVE_STUDENTS":
       newState.students = action.students;
+      break;
+
+    case "RECEIVE_STUDENT":
+      newState.selectedStudent = action.student;
       break;
 
     case "ADD_STUDENT":

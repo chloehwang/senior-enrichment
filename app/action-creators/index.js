@@ -23,6 +23,13 @@ export const addCampus = (campus) => {
   }
 }
 
+export const removeCampus = (id) => {
+  return {
+    type: "REMOVE_CAMPUS",
+    id
+  }
+}
+
 
 export const createCampus = (body) => {
   return (dispatch) => {
@@ -36,12 +43,31 @@ export const createCampus = (body) => {
     }
 }
 
+export const deleteCampus = (id) => {
+  return (dispatch) => {
+    axios.delete(`/api/campus/${id}`)
+         .then(() => dispatch(removeCampus(id)))
+        //  .then(action => {  //dispatch RETURNS the action object
+        //     const path = `/campus/${action.campus.id}`;
+        //     browserHistory.push(path);
+        //  })
+         .catch(console.error)
+    }
+}
+
 
 //STUDENTS
 export const receiveStudents = (students) => {
   return {
     type: "RECEIVE_STUDENTS",
     students
+  }
+}
+
+export const receiveStudent = (student) => {
+  return {
+    type: "RECEIVE_STUDENT",
+    student
   }
 }
 

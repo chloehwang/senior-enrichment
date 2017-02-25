@@ -7,7 +7,7 @@ import { Provider } from 'react-redux'
 //AXIOS, REDUX, STORE
 import axios from 'axios'
 import store from './store'
-import { receiveCampuses, receiveCampus, receiveStudents } from './action-creators'
+import { receiveCampuses, receiveCampus, receiveStudents, receiveStudent } from './action-creators'
 
 //REACT COMPONENTS
 import App from './components/App'
@@ -16,6 +16,7 @@ import CampusContainer from './containers/CampusContainer'
 import StudentContainer from './containers/StudentContainer'
 import AdminContainer from './containers/AdminContainer'
 import SingleCampusContainer from './containers/SingleCampusContainer'
+import SingleStudentContainer from './containers/SingleStudentContainer'
 
 const loadData = () => {
   const fetchCampuses = axios.get('/api/campuses')
@@ -26,13 +27,19 @@ const loadData = () => {
       store.dispatch(receiveCampuses(campuses.data))
       store.dispatch(receiveStudents(students.data))
     })
+    .catch(console.error)
 }
 
 const loadSingleCampus = (nextState) => {
   axios.get(`/api/campus/${nextState.params.campusId}`)
-      .then(campus => {
-        store.dispatch(receiveCampus(campus.data))
-      })
+      .then(campus => store.dispatch(receiveCampus(campus.data)))
+      .catch(console.error)
+}
+
+const loadSingleStudent = (nextState) => {
+  axios.get(`/api/student/${nextState.params.studentId}`)
+      .then(student => store.dispatch(receiveStudent(student.data)))
+      .catch(console.error)
 }
 
 render(
@@ -44,6 +51,7 @@ render(
         <Route path='campuses' component={CampusContainer} />
         <Route path='campus/:campusId' component={SingleCampusContainer} onEnter={loadSingleCampus} />
         <Route path='students' component={StudentContainer} />
+        <Route path='student/:studentId' component={SingleStudentContainer} onEnter={loadSingleStudent} />
         <Route path='admin/:type' component={AdminContainer} />
       </Route>
     </Router>

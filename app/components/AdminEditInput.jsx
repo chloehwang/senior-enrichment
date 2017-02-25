@@ -5,10 +5,9 @@ export default function(props) {
   const inputCheck = props.state;
 
   return (
-    <div className="body">
-      <h2>Create a {props.type.slice(0,1).toUpperCase() + props.type.slice(1)}</h2>
-
+    <div>
       <form onSubmit={props.handleInput}>
+
         <FormGroup validationState={inputCheck.invalidName}>
           <ControlLabel>Name</ControlLabel>
           <FormControl type="text" placeholder="Zenon Kar" name="name" />
@@ -48,7 +47,7 @@ export default function(props) {
             <option>Moon</option>
             <option>Mars</option>
             <option>Asteroids</option>
-            <option>Jupitar</option>
+            <option>Jupiter</option>
             <option>Saturn</option>
             <option>Uranus</option>
             <option>Neptune</option>

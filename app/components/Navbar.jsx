@@ -29,10 +29,10 @@ export default () => {
           <Nav pullRight>
             <NavDropdown eventKey={3} title="Admin" id="basic-nav-dropdown">
               <LinkContainer to="/admin/campus">
-                <MenuItem eventKey={3.1}>View Campus</MenuItem>
+                <MenuItem eventKey={3.1}>Add/Edit Campus</MenuItem>
               </LinkContainer>
               <LinkContainer to="/admin/student">
-                <MenuItem eventKey={3.2}>View Student</MenuItem>
+                <MenuItem eventKey={3.2}>Add/Edit Student</MenuItem>
               </LinkContainer>
             </NavDropdown>
           </Nav>

@@ -19,4 +19,12 @@ module.exports = db.define('campus', {
     type: Sequelize.STRING,
     allowNull: false
   }
+}, {
+  scopes: {
+    populated: () => ({ // function form lets us use to-be-defined models
+      include: [{
+        model: db.model('student')
+      }]
+    })
+  }
 })

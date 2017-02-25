@@ -1,5 +1,6 @@
-import React from 'react';
-import { Panel, Button } from 'react-bootstrap';
+import React from 'react'
+import { Link } from 'react-router'
+import { Panel, Button } from 'react-bootstrap'
 import DisplayCards from './DisplayCards'
 
 export default function(props) {
@@ -7,11 +8,11 @@ export default function(props) {
     return (
       <Panel key={student.id}>
         <img className="img-responsive" src={student.image} />
-        <h3>{student.name}</h3>
+        <h3><Link to={`student/${student.id}`}>{student.name}</Link></h3>
         <p>Address: {student.city}-{student.planet}<br />
            Interests: {student.specialties}
         </p>
-        <Button>View Student's Campus</Button>
+        <Button><Link to={`campus/${student.campusId}`}>View Student's Campus</Link></Button>
       </Panel>
       )
   })
@@ -19,7 +20,7 @@ export default function(props) {
   return (
     <div className="body">
       <h1>Our Students</h1>
-      {<DisplayCards cards={studentCards} />}
+      {<DisplayCards cards={studentCards} sm={12} md={6}/>}
     </div>
   )
 }

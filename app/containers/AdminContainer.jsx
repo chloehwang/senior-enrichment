@@ -1,8 +1,9 @@
 import React from 'react'
-import EditInput from '../components/EditInput'
 import { connect } from 'react-redux'
-import { createCampus, createStudent } from '../action-creators'
-
+import { Grid, Row, Col } from 'react-bootstrap';
+import AdminEditInput from '../components/AdminEditInput'
+import List from '../components/List'
+import { createCampus, createStudent, deleteCampus } from '../action-creators'
 
 export default connect(
   (state, ownProps) => {
@@ -16,6 +17,10 @@ export default connect(
       handleSubmit: function(body, type) {
         if (type === "campus") dispatch(createCampus(body))
         else {dispatch(createStudent(body))}
+      },
+      handleDelete: function (e) {
+        e.preventDefault();
+        dispatch(deleteCampus(e.target.value))
       }
     }
   }
@@ -61,17 +66,32 @@ export default connect(
     }
 
     render() {
+      const title = this.props.type.slice(0,1).toUpperCase() + this.props.type.slice(1);
+
       return (
-        <div>
-          <EditInput
-            handleInput={this.handleInput}
-            type={this.props.type}
-            state={this.state}
-            campuses={this.props.campuses}
-          />
-          <hr/>
-
-
+        <div className="body">
+          <Grid>
+            <Row className="show-grid">
+              <Col sm={12} md={6}>
+                <h2>Create a {title}</h2>
+                <AdminEditInput
+                  handleInput={this.handleInput}
+                  type={this.props.type}
+                  state={this.state}
+                  campuses={this.props.campuses}
+                />
+              </Col>
+              <Col sm={12} md={6}>
+                <h2>Edit a {title}</h2>
+                <List
+                  listItems={this.props.campuses}
+                  handleDelete={this.props.handleDelete}
+                  isAdmin={true}
+                  type="campus"
+                />
+              </Col>
+            </Row>
+          </Grid>
         </div>
         )
     }

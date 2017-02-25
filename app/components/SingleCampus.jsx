@@ -1,6 +1,7 @@
 import React from 'react';
 import { Panel, Table } from 'react-bootstrap';
 import DisplayCards from './DisplayCards'
+import List from './List'
 
 export default function(props) {
   const campus = props.selected;
@@ -27,9 +28,15 @@ export default function(props) {
     )]
 
   return (
-    <div className="body">
-      <h1>{campus.name}</h1>
+    <div className={props.student ? null : "body"}>
+      { props.student ? null : <h1>{campus.name}</h1> }
       <DisplayCards cards={campusCard} sm={12} md={12}/>
+      { props.student ? null :
+          <div>
+            <h2>Enrolled Students</h2>
+            <List listItems={props.enrolledStudents} type="student" />
+          </div>
+      }
     </div>
   )
 }

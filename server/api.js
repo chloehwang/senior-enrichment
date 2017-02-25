@@ -11,8 +11,14 @@ api.get('/campuses', function(req, res, next) {
 })
 
 api.get('/campus/:id', function(req, res, next) {
-	Campus.findById(req.params.id)
+	Campus.scope('populated').findById(req.params.id)
 		.then(campus => res.send(campus))
+		.catch(next)
+})
+
+api.delete('/campus/:id', function(req, res, next) {
+	Campus.destroy({where: { id: req.params.id }})
+		.then(() => res.send())
 		.catch(next)
 })
 
@@ -31,6 +37,13 @@ api.get('/students', function(req, res, next) {
 api.post('/student', function(req, res, next) {
 	console.log(req.body)
 	Student.create(req.body)
+		.then(student => res.send(student))
+		.catch(next)
+})
+
+api.get('/student/:id', function(req, res, next) {
+	//looking for scope named 'populated' on the Student model. 'Populated 'scope includes all student's info + their campus's info
+	Student.scope('populated').findById(req.params.id)
 		.then(student => res.send(student))
 		.catch(next)
 })
