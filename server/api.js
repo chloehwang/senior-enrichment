@@ -22,6 +22,12 @@ api.delete('/campus/:id', function(req, res, next) {
 		.catch(next)
 })
 
+api.put('/campus/:id', function(req, res, next) {
+	Campus.update(req.body, {where: { id: req.params.id }})
+		.then(() => res.send())
+		.catch(next)
+})
+
 api.post('/campus', function(req, res, next) {
 	Campus.create(req.body)
 		.then(campus => res.send(campus))
@@ -35,7 +41,6 @@ api.get('/students', function(req, res, next) {
 })
 
 api.post('/student', function(req, res, next) {
-	console.log(req.body)
 	Student.create(req.body)
 		.then(student => res.send(student))
 		.catch(next)
@@ -50,6 +55,12 @@ api.get('/student/:id', function(req, res, next) {
 
 api.delete('/student/:id', function(req, res, next) {
 	Student.destroy({where: { id: req.params.id }})
+		.then(() => res.send())
+		.catch(next)
+})
+
+api.put('/student/:id', function(req, res, next) {
+	Student.update(req.body, {where: { id: req.params.id }})
 		.then(() => res.send())
 		.catch(next)
 })

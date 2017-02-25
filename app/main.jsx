@@ -32,14 +32,14 @@ const loadData = () => {
 }
 
 const loadSingleCampus = (nextState, replace, done) => {
-  axios.get(`/api/campus/${nextState.params.campusId}`)
+  axios.get(`/api/campus/${nextState.params.id}`)
       .then(campus => store.dispatch(receiveCampus(campus.data)))
       .then(() => done())
       .catch(console.error)
 }
 
 const loadSingleStudent = (nextState, replace, done) => {
-  axios.get(`/api/student/${nextState.params.studentId}`)
+  axios.get(`/api/student/${nextState.params.id}`)
       .then(student => store.dispatch(receiveStudent(student.data)))
       .then(() => done())
       .catch(console.error)
@@ -52,12 +52,12 @@ render(
         <IndexRedirect to="/home" />
         <Route path="home" component={Home} />
         <Route path='campuses' component={CampusContainer} />
-        <Route path='campus/:campusId' component={SingleCampusContainer} onEnter={loadSingleCampus} />
+        <Route path='campus/:id' component={SingleCampusContainer} onEnter={loadSingleCampus} />
         <Route path='students' component={StudentContainer} />
-        <Route path='student/:studentId' component={SingleStudentContainer} onEnter={loadSingleStudent} />
+        <Route path='student/:id' component={SingleStudentContainer} onEnter={loadSingleStudent} />
         <Route path='admin/:type' component={AdminContainer} />
-        <Route path='edit/campus/:campusId' component={EditContainer} onEnter={loadSingleCampus}/>
-        <Route path='edit/student/:studentId' component={EditContainer} onEnter={loadSingleStudent}/>
+        <Route path='edit/campus/:id' component={EditContainer} onEnter={loadSingleCampus}/>
+        <Route path='edit/student/:id' component={EditContainer} onEnter={loadSingleStudent}/>
       </Route>
     </Router>
   </Provider>,

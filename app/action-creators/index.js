@@ -30,6 +30,25 @@ export const removeCampus = (id) => {
   }
 }
 
+export const updateCampuses = (id) => {
+  return {
+    type: "UPDATE_CAMPUSES",
+    id
+  }
+}
+
+export const getAllCampuses = () => {
+  return (dispatch) => {
+    axios.get('/api/campuses')
+         .then(campuses => dispatch(receiveCampuses(campuses.data)))
+         .then(() => {
+            const path = `/admin/campus`;
+            browserHistory.push(path);
+         })
+         .catch(console.error)
+    }
+}
+
 export const createCampus = (body) => {
   return (dispatch) => {
     axios.post('/api/campus', body)
@@ -49,6 +68,16 @@ export const deleteCampus = (id) => {
          .catch(console.error)
     }
 }
+
+export const updateCampus = (body, id) => {
+  return (dispatch) => {
+    axios.put(`/api/campus/${id}`, body)
+         .then(() => dispatch(getAllCampuses()))
+         .catch(console.error)
+    }
+}
+
+
 
 
 //STUDENTS
@@ -80,6 +109,18 @@ export const removeStudent = (id) => {
   }
 }
 
+export const getAllStudents = () => {
+  return (dispatch) => {
+    axios.get('/api/students')
+         .then(students => dispatch(receiveStudents(students.data)))
+         .then(() => {
+            const path = `/admin/student`;
+            browserHistory.push(path);
+         })
+         .catch(console.error)
+    }
+}
+
 export const createStudent = (body) => {
   return (dispatch) => {
     axios.post('/api/student', body)
@@ -96,6 +137,14 @@ export const deleteStudent = (id) => {
   return (dispatch) => {
     axios.delete(`/api/student/${id}`)
          .then(() => dispatch(removeStudent(id)))
+         .catch(console.error)
+    }
+}
+
+export const updateStudent = (body, id) => {
+  return (dispatch) => {
+    axios.put(`/api/student/${id}`, body)
+         .then(() => dispatch(getAllStudents()))
          .catch(console.error)
     }
 }
