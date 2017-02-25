@@ -73,7 +73,7 @@ export default function(props) {
         </FormGroup>
 
         <Button bsStyle="info" type="submit">
-          Edit
+          Update
         </Button>
 
       </form>

@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { createCampus, createStudent, deleteCampus, deleteStudent } from '../action-creators'
 import AdminHome from '../components/AdminHome'
+import handleInput from '../handleInput'
 
 export default connect(
   (state, ownProps) => {
@@ -32,7 +33,7 @@ export default connect(
         invalidSpecs: null,
         invalidEmail: null
       }
-      this.handleInput = this.handleInput.bind(this);
+      this.handleInput = handleInput.bind(this);
     }
 
     handleInput(e) {

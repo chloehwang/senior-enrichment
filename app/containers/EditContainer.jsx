@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { createCampus, createStudent, deleteCampus, deleteStudent } from '../action-creators'
 import AdminEditForm from '../components/AdminEditForm'
+import handleInput from '../handleInput'
 
 export default connect(
   (state, ownProps) => {
@@ -34,6 +35,7 @@ export default connect(
         invalidSpecs: null,
         invalidEmail: null
       }
+      this.handleInput = handleInput.bind(this);
     }
 
     render() {
