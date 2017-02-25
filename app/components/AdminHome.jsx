@@ -23,7 +23,7 @@ export default (props) => {
           />
         </Col>
         <Col sm={12} md={6}>
-          <h2>Edit a {title}</h2>
+          <h2>Update a {title}</h2>
           <List
             listItems={listItems}
             handleDelete={props.handleDelete}

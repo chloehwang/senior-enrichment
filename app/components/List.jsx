@@ -18,7 +18,12 @@ const rows = props.listItems && props.listItems.map(item => {
         </button>
           : item.email
         }
-        </td>
+      </td>
+      { props.isAdmin ? <td><Link to={`/edit/${props.type}/${item.id}`}>
+          <button className="btn btn-xs btn-info" value={item.id}>o</button>
+        </Link></td>
+        : null
+      }
     </tr>
   )
 })
@@ -30,6 +35,7 @@ const rows = props.listItems && props.listItems.map(item => {
         <th><h4>ID #</h4></th>
         <th><h4>Name</h4></th>
         <th>{ props.isAdmin ? <h4>Delete?</h4> : <h4>Email</h4> }</th>
+        { props.isAdmin ? <th><h4>Edit</h4></th> : null }
       </tr>
     </thead>
     <tbody>

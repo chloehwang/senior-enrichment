@@ -15,6 +15,7 @@ import Home from './components/Home'
 import CampusContainer from './containers/CampusContainer'
 import StudentContainer from './containers/StudentContainer'
 import AdminContainer from './containers/AdminContainer'
+import EditContainer from './containers/EditContainer'
 import SingleCampusContainer from './containers/SingleCampusContainer'
 import SingleStudentContainer from './containers/SingleStudentContainer'
 
@@ -30,15 +31,17 @@ const loadData = () => {
     .catch(console.error)
 }
 
-const loadSingleCampus = (nextState) => {
+const loadSingleCampus = (nextState, replace, done) => {
   axios.get(`/api/campus/${nextState.params.campusId}`)
       .then(campus => store.dispatch(receiveCampus(campus.data)))
+      .then(() => done())
       .catch(console.error)
 }
 
-const loadSingleStudent = (nextState) => {
+const loadSingleStudent = (nextState, replace, done) => {
   axios.get(`/api/student/${nextState.params.studentId}`)
       .then(student => store.dispatch(receiveStudent(student.data)))
+      .then(() => done())
       .catch(console.error)
 }
 
@@ -53,6 +56,8 @@ render(
         <Route path='students' component={StudentContainer} />
         <Route path='student/:studentId' component={SingleStudentContainer} onEnter={loadSingleStudent} />
         <Route path='admin/:type' component={AdminContainer} />
+        <Route path='edit/campus/:campusId' component={EditContainer} onEnter={loadSingleCampus}/>
+        <Route path='edit/student/:studentId' component={EditContainer} onEnter={loadSingleStudent}/>
       </Route>
     </Router>
   </Provider>,

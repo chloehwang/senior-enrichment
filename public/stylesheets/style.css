@@ -14,7 +14,11 @@
 }
 
 .table > tbody > tr > td {
-  border-style: none
+  border-style: none;
+}
+
+.btn-xs {
+  margin-left: 15%;
 }
 
 .navbar {

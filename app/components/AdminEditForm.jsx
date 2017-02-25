@@ -2,31 +2,35 @@ import React from 'react';
 import { FormGroup, ControlLabel, FormControl, HelpBlock, Button } from 'react-bootstrap';
 
 export default function(props) {
+  const { name, email, campus, city, planet, descript, specialties } = props.inputCheck;
+  const { invalidName, invalidSpecs, invalidEmail } = props.inputCheck;
+
   return (
     <div>
       <form onSubmit={props.handleInput}>
 
-        <FormGroup validationState={props.invalidName}>
+        <FormGroup validationState={invalidName}>
           <ControlLabel>Name</ControlLabel>
-          <FormControl type="text" placeholder="Zenon Kar" name="name" />
-          { props.invalidName && <HelpBlock>Name cannot be blank.</HelpBlock> }
+          <FormControl type="text" name="name" defaultValue={name}
+            />
+          { invalidName && <HelpBlock>Name cannot be blank.</HelpBlock> }
           <FormControl.Feedback />
         </FormGroup>
 
         { props.type === "student" && (
         <div>
-          <FormGroup validationState={props.invalidEmail}>
+          <FormGroup validationState={invalidEmail}>
             <ControlLabel>Email</ControlLabel>
-            <FormControl type="text" placeholder="stargazer@school.edu" name="email" />
-            { props.invalidEmail && <HelpBlock>Must be a valid email.</HelpBlock> }
+            <FormControl type="text" name="email" defaultValue={email} />
+            { invalidEmail && <HelpBlock>Must be a valid email.</HelpBlock> }
             <FormControl.Feedback />
           </FormGroup>
 
           <FormGroup>
             <ControlLabel>Campus</ControlLabel>
-            <FormControl componentClass="select" name="campus" >
+            <FormControl componentClass="select" name="campus" defaultValue={campus.name}>
             { props.campuses && props.campuses.map(campus =>
-              <option key={campus.id} value={campus.id}>{campus.name}</option>
+              <option key={campus.id} defaultValue={campus.id}>{campus.name}</option>
             ) }
             </FormControl>
             <FormControl.Feedback />
@@ -36,12 +40,12 @@ export default function(props) {
 
         <FormGroup>
           <ControlLabel>City Precinct</ControlLabel>
-          <FormControl type="text" placeholder="#" name="city"/>
+          <FormControl type="text" name="city" defaultValue={city} />
         </FormGroup>
 
         <FormGroup controlId="formControlsSelect">
           <ControlLabel>Planet</ControlLabel>
-          <FormControl componentClass="select" name="planet">
+          <FormControl componentClass="select" name="planet" defaultValue={planet}>
             <option>Mercury</option>
             <option>Venus</option>
             <option>Earth</option>
@@ -58,18 +62,18 @@ export default function(props) {
 
         <FormGroup controlId="formControlsTextarea">
           <ControlLabel>Description</ControlLabel>
-          <FormControl componentClass="textarea" name="descript"/>
+          <FormControl componentClass="textarea" name="descript" defaultValue={descript}/>
         </FormGroup>
 
-        <FormGroup validationState={props.invalidSpecs}>
+        <FormGroup validationState={invalidSpecs}>
           <ControlLabel>Specialties</ControlLabel>
-          <FormControl type="text" placeholder="Javascript, frontend, intergalactic networks, etc." name="specialties" />
-          { props.invalidSpecs && <HelpBlock>Specialties cannot be blank.</HelpBlock> }
+          <FormControl type="text" name="specialties" defaultValue={specialties} />
+          { invalidSpecs && <HelpBlock>Specialties cannot be blank.</HelpBlock> }
           <FormControl.Feedback />
         </FormGroup>
 
-        <Button bsStyle="primary" type="submit">
-          Submit
+        <Button bsStyle="info" type="submit">
+          Edit
         </Button>
 
       </form>
