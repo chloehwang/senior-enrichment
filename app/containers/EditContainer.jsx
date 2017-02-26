@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { updateCampus, updateStudent, deleteStudent, removeCampusStudent, changeStudentSchool, addCampusStudent } from '../action-creators'
+import { updateCampus, updateStudent, deleteStudent, removeCampusStudent, changeStudentSchool } from '../action-creators'
 import EditPage from '../components/EditPage'
 import handleInput from '../handleInput'
 

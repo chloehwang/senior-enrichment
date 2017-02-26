@@ -11,9 +11,10 @@ import { receiveCampuses, receiveCampus, receiveStudents, receiveStudent } from 
 
 //REACT COMPONENTS
 import App from './components/App'
-import Home from './components/Home'
+import HomePage from './components/HomePage'
 import CampusContainer from './containers/CampusContainer'
 import StudentsContainer from './containers/StudentsContainer'
+import DisciplineContainer from './containers/DisciplineContainer'
 import AdminContainer from './containers/AdminContainer'
 import EditContainer from './containers/EditContainer'
 import SingleCampusContainer from './containers/SingleCampusContainer'
@@ -60,11 +61,12 @@ render(
     <Router history={browserHistory}>
       <Route path='/' component={App} onEnter={loadData}>
         <IndexRedirect to="/home" />
-        <Route path="home" component={Home} />
+        <Route path="home" component={HomePage} />
         <Route path='campuses' component={CampusContainer} />
         <Route path='campus/:id' component={SingleCampusContainer} onEnter={loadSingleCampus} />
         <Route path='students' component={StudentsContainer} />
         <Route path='student/:id' component={SingleStudentContainer} onEnter={loadSingleStudent} />
+        <Route path='disciplines' component={DisciplineContainer} />
         <Route path='admin/:type' component={AdminContainer} />
         <Route path='edit/:type/:id' component={EditContainer} onEnter={loadSingleEdit} />
       </Route>

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Grid, Row, Col } from 'react-bootstrap';
-import AdminEditForm from '../components/AdminEditForm'
+import AdminForm from '../components/AdminForm'
 import List from '../components/List'
 import Dropdown from '../components/Dropdown'
 
@@ -10,7 +10,7 @@ export default (props) => {
       <Row className="show-grid">
         <Col sm={12} md={6}>
           <h2>Edit {props.selectedName}</h2>
-          <AdminEditForm
+          <AdminForm
             handleInput={props.handleInput}
             inputCheck={props.inputCheck}
             type={props.type}

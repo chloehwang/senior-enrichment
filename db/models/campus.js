@@ -13,8 +13,12 @@ module.exports = db.define('campus', {
   image: Sequelize.STRING,
   descript: Sequelize.TEXT,
   specialties: {
-    type: Sequelize.STRING,
-    allowNull: false
+    type: Sequelize.ARRAY(Sequelize.STRING),
+    allowNull: false,
+    defaultValue: [],
+    set: function(tagStr){
+      this.setDataValue('specialties', tagStr.split(", "))
+    }
   }
 }, {
   hooks: {

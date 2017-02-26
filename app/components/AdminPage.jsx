@@ -1,6 +1,6 @@
 import React from 'react'
 import { Grid, Row, Col } from 'react-bootstrap';
-import AdminCreateForm from '../components/AdminCreateForm'
+import AdminForm from '../components/AdminForm'
 import List from '../components/List'
 
 export default (props) => {
@@ -13,13 +13,11 @@ export default (props) => {
       <Row className="show-grid">
         <Col sm={12} md={6}>
           <h2>Create a {title}</h2>
-          <AdminCreateForm
+          <AdminForm
             handleInput={props.handleInput}
+            inputCheck={props.inputCheck}
             type={type}
             campuses={props.campuses}
-            invalidName={props.inputCheck.invalidName}
-            invalidEmail={props.inputCheck.invalidEmail}
-            invalidSpecs={props.inputCheck.invalidSpecs}
           />
         </Col>
         <Col sm={12} md={6}>

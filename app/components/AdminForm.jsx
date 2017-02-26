@@ -26,9 +26,9 @@ export default function(props) {
 
         <FormGroup>
           <ControlLabel>Campus</ControlLabel>
-          <FormControl componentClass="select" name="campus" defaultValue={campus.name}>
-          { props.campuses && props.campuses.map(campus =>
-            <option key={campus.id} value={campus.id} defaultValue={campus.id}>{campus.name}</option>
+          <FormControl componentClass="select" name="campus" defaultValue={campus && campus.name}>
+          { props.campuses && props.campuses.map(c =>
+            <option key={c.id} value={c.id} defaultValue={c.id}>{c.name}</option>
           ) }
           </FormControl>
           <FormControl.Feedback />
