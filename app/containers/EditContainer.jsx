@@ -69,7 +69,7 @@ export default connect(
               <h2>Edit Students</h2>
               <List
                 listItems={this.props.students}
-                isAdmin={true}
+                isCampus={true}
                 handleDelete={this.props.handleDelete}
                 type="student"
               />
