@@ -45,6 +45,16 @@ const loadSingleStudent = (nextState, replace, done) => {
       .catch(console.error)
 }
 
+const loadSingleEdit = (nextState, replace, done) => {
+  axios.get(`/api/${nextState.params.type}/${nextState.params.id}`)
+      .then(found => {
+        let action = nextState.params.type === "campus" ? receiveCampus : receiveStudent;
+        store.dispatch(action(found.data))
+      })
+      .then(() => done())
+      .catch(console.error)
+}
+
 render(
   <Provider store={store}>
     <Router history={browserHistory}>
@@ -56,8 +66,7 @@ render(
         <Route path='students' component={StudentContainer} />
         <Route path='student/:id' component={SingleStudentContainer} onEnter={loadSingleStudent} />
         <Route path='admin/:type' component={AdminContainer} />
-        <Route path='edit/campus/:id' component={EditContainer} onEnter={loadSingleCampus}/>
-        <Route path='edit/student/:id' component={EditContainer} onEnter={loadSingleStudent}/>
+        <Route path='edit/:type/:id' component={EditContainer} onEnter={loadSingleEdit} />
       </Route>
     </Router>
   </Provider>,

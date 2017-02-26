@@ -1,19 +1,18 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { updateCampus, updateStudent, deleteStudent, removeCampusStudent } from '../action-creators'
-import AdminEditForm from '../components/AdminEditForm'
-import List from '../components/List'
+import EditHome from '../components/EditHome'
 import handleInput from '../handleInput'
 
 export default connect(
   (state, ownProps) => {
-    let isCampus = ownProps.location.pathname.includes('campus');
-    let selected = isCampus ? state.campus.selectedCampus : state.student.selectedStudent;
-    let type = isCampus ? "campus" : "student"
+    let selected = ownProps.params.type === "campus"
+                 ? state.campus.selectedCampus
+                 : state.student.selectedStudent;
 
     return {
       selected,
-      type,
+      type: ownProps.params.type,
       students: selected.students,  //needs to be part of store or else won't rerender when we delete student from campus
       campuses: state.campus.campuses
     }
@@ -51,30 +50,18 @@ export default connect(
       this.handleInput = handleInput.bind(this);
     }
 
-    render() {
+    render () {
       return (
         <div className="body">
-          <h2>Edit {this.props.selected.name}</h2>
-          <div className="body">
-            <AdminEditForm
-              handleInput={this.handleInput}
-              inputCheck={this.state}
-              type={this.props.type}
-              campuses={this.props.campuses}
-            />
-          </div>
-
-          { this.props.type === "campus" &&
-            <div>
-              <h2>Edit Students</h2>
-              <List
-                listItems={this.props.students}
-                isCampus={true}
-                handleDelete={this.props.handleDelete}
-                type="student"
-              />
-            </div>
-          }
+          <EditHome
+            handleInput={this.handleInput}
+            handleDelete={this.props.handleDelete}
+            selectedName={this.state.name}
+            inputCheck={this.state}
+            type={this.props.type}
+            campuses={this.props.campuses}
+            students={this.props.students}
+          />
         </div>
         )
     }
