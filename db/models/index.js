@@ -16,7 +16,7 @@ Student.belongsTo(Campus, {
   onDelete: 'cascade'
 })
 Campus.hasMany(Student)
-Campus.belongsToMany(Discipline, {through: 'campus_program'})
-Discipline.belongsToMany(Campus, {through: 'campus_program'})
+Campus.belongsToMany(Discipline, {through: 'campus_discipline'})
+Discipline.belongsToMany(Campus, {through: 'campus_discipline'})
 
 module.exports = {Student, Campus, Discipline}
