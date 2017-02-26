@@ -2,7 +2,6 @@ import React from 'react';
 import { FormGroup, ControlLabel, FormControl, HelpBlock, Button } from 'react-bootstrap';
 
 export default function(props) {
-  console.log(props)
   const { name, email, campus, city, planet, descript, specialties } = props.inputCheck;
   const { invalidName, invalidSpecs, invalidEmail } = props.inputCheck;
 

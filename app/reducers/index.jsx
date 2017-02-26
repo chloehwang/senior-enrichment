@@ -23,11 +23,15 @@ const campusReducer = (state = campusInitialState, action) => {
       break;
 
     case "REMOVE_CAMPUS":
-      newState.campuses = newState.campuses.filter(campus => campus.id !== +action.id)
+      newState.campuses = newState.campuses.filter(campus => campus.id !== +action.id);
       break;
 
     case "REMOVE_CAMPUS_STUDENT":
-      newState.selectedCampus.students = newState.selectedCampus.students.filter(student => student.id !== +action.id)
+      newState.selectedCampus.students = newState.selectedCampus.students.filter(student => student.id !== +action.id);
+      break;
+
+    case "ADD_CAMPUS_STUDENT":
+      newState.selectedCampus.students = [...newState.selectedCampus.students, action.student];
       break;
 
     default: return state

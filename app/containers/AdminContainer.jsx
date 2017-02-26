@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { createCampus, createStudent, deleteCampus, deleteStudent } from '../action-creators'
-import AdminHome from '../components/AdminHome'
+import AdminPage from '../components/AdminPage'
 import handleInput from '../handleInput'
 
 export default connect(
@@ -37,10 +37,9 @@ export default connect(
     }
 
     render() {
-
       return (
         <div className="body">
-          <AdminHome
+          <AdminPage
             type={this.props.type}
             campuses={this.props.campuses}
             students={this.props.students}

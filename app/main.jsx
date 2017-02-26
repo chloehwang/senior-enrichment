@@ -13,7 +13,7 @@ import { receiveCampuses, receiveCampus, receiveStudents, receiveStudent } from 
 import App from './components/App'
 import Home from './components/Home'
 import CampusContainer from './containers/CampusContainer'
-import StudentContainer from './containers/StudentContainer'
+import StudentsContainer from './containers/StudentsContainer'
 import AdminContainer from './containers/AdminContainer'
 import EditContainer from './containers/EditContainer'
 import SingleCampusContainer from './containers/SingleCampusContainer'
@@ -63,7 +63,7 @@ render(
         <Route path="home" component={Home} />
         <Route path='campuses' component={CampusContainer} />
         <Route path='campus/:id' component={SingleCampusContainer} onEnter={loadSingleCampus} />
-        <Route path='students' component={StudentContainer} />
+        <Route path='students' component={StudentsContainer} />
         <Route path='student/:id' component={SingleStudentContainer} onEnter={loadSingleStudent} />
         <Route path='admin/:type' component={AdminContainer} />
         <Route path='edit/:type/:id' component={EditContainer} onEnter={loadSingleEdit} />

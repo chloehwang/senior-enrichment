@@ -44,6 +44,13 @@ export const removeCampusStudent = (id) => {
   }
 }
 
+export const addCampusStudent = (student) => {
+  return {
+    type: "ADD_CAMPUS_STUDENT",
+    student
+  }
+}
+
 export const getAllCampuses = () => {
   return (dispatch) => {
     axios.get('/api/campuses')
@@ -153,5 +160,16 @@ export const updateStudent = (body, id) => {
     axios.put(`/api/student/${id}`, body)
          .then(() => dispatch(getAllStudents()))
          .catch(console.error)
+    }
+}
+
+export const changeStudentSchool = (body, id) => {
+  return (dispatch) => {
+    const updateSchool = axios.put(`/api/student/${id}`, body);
+    const findStudent = axios.get(`/api/student/${id}`);
+
+    Promise.all([updateSchool, findStudent])
+      .then(([_, student]) => dispatch(addCampusStudent(student.data)))
+      .catch(console.error)
     }
 }

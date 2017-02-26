@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { updateCampus, updateStudent, deleteStudent, removeCampusStudent } from '../action-creators'
-import EditHome from '../components/EditHome'
+import { updateCampus, updateStudent, deleteStudent, removeCampusStudent, changeStudentSchool, addCampusStudent } from '../action-creators'
+import EditPage from '../components/EditPage'
 import handleInput from '../handleInput'
 
 export default connect(
@@ -13,8 +13,9 @@ export default connect(
     return {
       selected,
       type: ownProps.params.type,
-      students: selected.students,  //needs to be part of store or else won't rerender when we delete student from campus
-      campuses: state.campus.campuses
+      campusStudents: selected.students,  //needs to be part of store or else won't rerender when we delete student from campus
+      campuses: state.campus.campuses,
+      students: state.student.students
     }
   },
   (dispatch, ownProps) => {
@@ -27,8 +28,12 @@ export default connect(
       },
       handleDelete: function (e) {
         e.preventDefault();
-        dispatch(removeCampusStudent(e.target.value))
         dispatch(deleteStudent(e.target.value))
+        dispatch(removeCampusStudent(e.target.value))
+      },
+      handleAdd: function(e) {
+        e.preventDefault();
+        dispatch(changeStudentSchool({campusId: id}, e.target.item.value))
       }
     }
   }
@@ -51,16 +56,22 @@ export default connect(
     }
 
     render () {
+      let enrolledStudentNames = this.props.campusStudents.map(student => student.name);
+      let students = enrolledStudentNames && this.props.students.filter(student =>
+        enrolledStudentNames.indexOf(student.name) === -1);
+
       return (
         <div className="body">
-          <EditHome
+          <EditPage
             handleInput={this.handleInput}
             handleDelete={this.props.handleDelete}
+            handleAdd={this.props.handleAdd}
             selectedName={this.state.name}
             inputCheck={this.state}
             type={this.props.type}
             campuses={this.props.campuses}
-            students={this.props.students}
+            campusStudents={this.props.campusStudents}
+            students={students}
           />
         </div>
         )
