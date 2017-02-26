@@ -25,6 +25,16 @@ module.exports = db.define('campus', {
     beforeCreate: (campus) => {
       let num = Math.floor(Math.random() * 10) + 1;
       campus.image = `/img/${num}.png`
+    },
+    afterCreate: (campus) => {
+      let createDiscPromises = campus.specialties.map(spec =>
+        db.model('discipline').findOrCreate({where: {name: spec}}));
+
+      Promise.all(createDiscPromises)
+          .then(createdDiscs => {
+            let discs = createdDiscs.map(([disc, _]) => disc);
+            campus.addDisciplines(discs)
+          })
     }
   },
 

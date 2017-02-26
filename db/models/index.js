@@ -6,6 +6,7 @@
 
 const Student = require('./student')
 const Campus = require('./campus')
+const Discipline = require('./discipline')
 
 Student.belongsTo(Campus, {
   foreignKey: {
@@ -15,5 +16,7 @@ Student.belongsTo(Campus, {
   onDelete: 'cascade'
 })
 Campus.hasMany(Student)
+Campus.belongsToMany(Discipline, {through: 'campus_program'})
+Discipline.belongsToMany(Campus, {through: 'campus_program'})
 
-module.exports = {Student, Campus}
+module.exports = {Student, Campus, Discipline}

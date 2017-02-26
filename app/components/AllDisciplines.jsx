@@ -19,7 +19,7 @@ export default function(props) {
 
   return (
     <div className="body">
-      <h1>Our Students</h1>
+      <h1>Find By Discipline</h1>
       {<DisplayCards cards={studentCards} sm={12} md={6}/>}
     </div>
   )
