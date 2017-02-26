@@ -70,8 +70,8 @@ export default function(props) {
         <FormControl.Feedback />
       </FormGroup>
 
-      <Button bsStyle="info" type="submit">
-        Update
+      <Button type="submit">
+        Submit
       </Button>
 
     </form>

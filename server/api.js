@@ -23,7 +23,10 @@ api.delete('/campus/:id', function(req, res, next) {
 })
 
 api.put('/campus/:id', function(req, res, next) {
-	Campus.update(req.body, {where: { id: req.params.id }, individualHooks: true})
+	Campus.update(req.body, {
+		where: {id: req.params.id},
+		individualHooks: true
+	})
 		.then(() => res.send())
 		.catch(next)
 })
@@ -60,7 +63,10 @@ api.delete('/student/:id', function(req, res, next) {
 })
 
 api.put('/student/:id', function(req, res, next) {
-	Student.update(req.body, {where: { id: req.params.id }})
+	Student.update(req.body, {
+		where: {id: req.params.id},
+		individualHooks: true
+	})
 		.then(() => res.send())
 		.catch(next)
 })

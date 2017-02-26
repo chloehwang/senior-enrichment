@@ -1,5 +1,6 @@
-import React from 'react';
-import { Panel, Table } from 'react-bootstrap';
+import React from 'react'
+import { Link } from 'react-router'
+import { Panel, Table } from 'react-bootstrap'
 import DisplayCards from './DisplayCards'
 import List from './List'
 
@@ -16,7 +17,8 @@ export default function(props) {
             </tr>
             <tr>
               <td><h3>Specialties:</h3></td>
-              <td><h3>{campus.specialties}</h3></td>
+              <td><h3>{ campus.specialties.map((spec, i) =>
+            <span key={i}><Link to={`/disciplines/${spec}`}>{spec}</Link> / </span>) }</h3></td>
             </tr>
             <tr>
               <td><h3>About:</h3></td>
