@@ -4,22 +4,23 @@ import { Table } from 'react-bootstrap';
 
 
 export default function(props) {
+const type = props.type;
 
 const rows = props.listItems && props.listItems.map(item => {
   return (
     <tr key={item.id}>
-      <td>{item.id}</td>
-      <td><Link to={`/${props.type}/${item.id}`}>{item.name}</Link></td>
+      <td><h4>{item.id}</h4></td>
+      <td><Link to={`/${type}/${item.id}`}><h4>{item.name}</h4></Link></td>
       <td>{ props.isAdmin ?
         <button
           className="btn btn-xs btn-danger"
           value={item.id}
-          onClick={(e) => props.handleDelete(e, props.type)}>x
+          onClick={(e) => props.handleDelete(e, type)}>x
         </button>
-          : item.email
+          : <h4>{item.email}</h4>
         }
       </td>
-      { props.isAdmin ? <td><Link to={`/edit/${props.type}/${item.id}`}>
+      { props.isAdmin && type !== "student" ? <td><Link to={`/edit/${type}/${item.id}`}>
           <button className="btn btn-xs btn-info" value={item.id}>o</button>
         </Link></td>
         : null
@@ -32,10 +33,10 @@ const rows = props.listItems && props.listItems.map(item => {
     <Table responsive className="listTable">
     <thead>
       <tr>
-        <th><h4>ID #</h4></th>
+        <th><h4>#</h4></th>
         <th><h4>Name</h4></th>
         <th>{ props.isAdmin ? <h4>Delete?</h4> : <h4>Email</h4> }</th>
-        { props.isAdmin ? <th><h4>Edit</h4></th> : null }
+        { props.isAdmin && type !== "student" ? <th><h4>Edit</h4></th> : null }
       </tr>
     </thead>
     <tbody>

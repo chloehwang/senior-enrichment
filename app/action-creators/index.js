@@ -37,6 +37,13 @@ export const updateCampuses = (id) => {
   }
 }
 
+export const removeCampusStudent = (id) => {
+  return {
+    type: "REMOVE_CAMPUS_STUDENT",
+    id
+  }
+}
+
 export const getAllCampuses = () => {
   return (dispatch) => {
     axios.get('/api/campuses')

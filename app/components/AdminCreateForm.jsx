@@ -36,7 +36,7 @@ export default function(props) {
 
         <FormGroup>
           <ControlLabel>City Precinct</ControlLabel>
-          <FormControl type="text" placeholder="#" name="city"/>
+          <FormControl type="text" placeholder="Enter your 3 number precinct" name="city"/>
         </FormGroup>
 
         <FormGroup controlId="formControlsSelect">
@@ -58,7 +58,7 @@ export default function(props) {
 
         <FormGroup controlId="formControlsTextarea">
           <ControlLabel>Description</ControlLabel>
-          <FormControl componentClass="textarea" name="descript"/>
+          <FormControl componentClass="textarea" name="descript" placeholder="We love coding!"/>
         </FormGroup>
 
         <FormGroup validationState={props.invalidSpecs}>

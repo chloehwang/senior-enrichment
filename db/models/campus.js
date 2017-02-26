@@ -10,16 +10,20 @@ module.exports = db.define('campus', {
   },
   city: Sequelize.STRING(3),
   planet: Sequelize.STRING,
-  image: {
-    type: Sequelize.STRING,
-    defaultValue: '/img/planet.png'
-  },
+  image: Sequelize.STRING,
   descript: Sequelize.TEXT,
   specialties: {
     type: Sequelize.STRING,
     allowNull: false
   }
 }, {
+  hooks: {
+    beforeCreate: (campus) => {
+      let num = Math.floor(Math.random() * 10) + 1;
+      campus.image = `/img/${num}.png`
+    }
+  },
+
   scopes: {
     populated: () => ({ // function form lets us use to-be-defined models
       include: [{

@@ -1,7 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { updateCampus, updateStudent, deleteStudent } from '../action-creators'
+import { updateCampus, updateStudent, deleteStudent, removeCampusStudent } from '../action-creators'
 import AdminEditForm from '../components/AdminEditForm'
+import List from '../components/List'
 import handleInput from '../handleInput'
 
 export default connect(
@@ -10,7 +11,12 @@ export default connect(
     let selected = isCampus ? state.campus.selectedCampus : state.student.selectedStudent;
     let type = isCampus ? "campus" : "student"
 
-    return { selected, type, campuses: state.campus.campuses }
+    return {
+      selected,
+      type,
+      students: selected.students,  //needs to be part of store or else won't rerender when we delete student from campus
+      campuses: state.campus.campuses
+    }
   },
   (dispatch, ownProps) => {
     const id = ownProps.params.id;
@@ -19,6 +25,11 @@ export default connect(
       handleSubmit: function(body, type) {
         if (type === "campus") dispatch(updateCampus(body, id))
         else {dispatch(updateStudent(body, id))}
+      },
+      handleDelete: function (e) {
+        e.preventDefault();
+        dispatch(removeCampusStudent(e.target.value))
+        dispatch(deleteStudent(e.target.value))
       }
     }
   }
@@ -52,6 +63,18 @@ export default connect(
               campuses={this.props.campuses}
             />
           </div>
+
+          { this.props.type === "campus" &&
+            <div>
+              <h2>Edit Students</h2>
+              <List
+                listItems={this.props.students}
+                isAdmin={true}
+                handleDelete={this.props.handleDelete}
+                type="student"
+              />
+            </div>
+          }
         </div>
         )
     }
