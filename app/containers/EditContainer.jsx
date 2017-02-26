@@ -56,7 +56,8 @@ export default connect(
     }
 
     render () {
-      let enrolledStudentNames = this.props.campusStudents.map(student => student.name);
+      let campusStudents = this.props.campusStudents;
+      let enrolledStudentNames = campusStudents && campusStudents.map(student => student.name);
       let students = enrolledStudentNames && this.props.students.filter(student =>
         enrolledStudentNames.indexOf(student.name) === -1);
 
@@ -70,7 +71,7 @@ export default connect(
             inputCheck={this.state}
             type={this.props.type}
             campuses={this.props.campuses}
-            campusStudents={this.props.campusStudents}
+            campusStudents={campusStudents}
             students={students}
           />
         </div>

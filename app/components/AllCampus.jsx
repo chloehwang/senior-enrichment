@@ -12,7 +12,7 @@ export default function(props) {
         <p>Address: {campus.city}-{campus.planet}<br />
            Specialties: {campus.specialties}
         </p>
-        <Button bsStyle="primary">View Students</Button>
+        <Button bsStyle="primary">Tour Campus</Button>
       </Panel>
       )
   })

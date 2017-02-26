@@ -12,7 +12,7 @@ export default function(props) {
         <p>Address: {student.city}-{student.planet}<br />
            Interests: {student.specialties}
         </p>
-        <Button><Link to={`campus/${student.campusId}`}>View Student's Campus</Link></Button>
+        <Button><Link to="">View Student's Projects</Link></Button>
       </Panel>
       )
   })
