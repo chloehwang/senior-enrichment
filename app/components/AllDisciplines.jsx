@@ -7,7 +7,7 @@ export default function(props) {
   const disciplineCards = props.disciplines && props.disciplines.map(disc => {
     return (
       <Panel key={disc.id}>
-        <img className="img-small" src="/img/8-girl.png" />
+        <img className="img-small" src={disc.image} />
         <h3>{disc.name}</h3>
         <Button><Link to={`disciplines/${disc.name}`}>View Specializing Schools</Link></Button>
       </Panel>

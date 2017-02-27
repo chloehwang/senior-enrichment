@@ -16,6 +16,7 @@ export const receiveDiscipline = (discipline) => {
   }
 }
 
+
 //CAMPUS
 export const receiveCampuses = (campuses) => {
   return {
@@ -52,13 +53,6 @@ export const updateCampuses = (id) => {
   }
 }
 
-export const removeCampusStudent = (id) => {
-  return {
-    type: "REMOVE_CAMPUS_STUDENT",
-    id
-  }
-}
-
 export const addCampusStudent = (student) => {
   return {
     type: "ADD_CAMPUS_STUDENT",
@@ -66,16 +60,11 @@ export const addCampusStudent = (student) => {
   }
 }
 
-export const getAllCampuses = () => {
-  return (dispatch) => {
-    axios.get('/api/campuses')
-         .then(campuses => dispatch(receiveCampuses(campuses.data)))
-         .then(() => {
-            const path = `/admin/campus`;
-            browserHistory.push(path);
-         })
-         .catch(console.error)
-    }
+export const removeCampusStudent = (id) => {
+  return {
+    type: "REMOVE_CAMPUS_STUDENT",
+    id
+  }
 }
 
 export const createCampus = (body) => {
@@ -94,7 +83,7 @@ export const deleteCampus = (id) => {
   return (dispatch) => {
     axios.delete(`/api/campus/${id}`)
          .then(() => {
-           dispatch(removeCampus(id));
+           dispatch(removeCampus(id))
            dispatch(fetchStudents())
           })
          .catch(console.error)
@@ -104,12 +93,22 @@ export const deleteCampus = (id) => {
 export const updateCampus = (body, id) => {
   return (dispatch) => {
     axios.put(`/api/campus/${id}`, body)
-         .then(() => dispatch(getAllCampuses()))
+         .then(() => dispatch(fetchCampuses()))
+         .then(() => {
+           const path = `/admin/campus`;
+           browserHistory.push(path);
+         })
          .catch(console.error)
     }
 }
 
-
+export const fetchCampuses = () => {
+  return (dispatch) => {
+    axios.get('/api/campuses')
+         .then(campuses => dispatch(receiveCampuses(campuses.data)))
+         .catch(console.error)
+    }
+}
 
 
 //STUDENTS
@@ -141,14 +140,6 @@ export const removeStudent = (id) => {
   }
 }
 
-export const fetchStudents = () => {
-  return (dispatch) => {
-    axios.get('/api/students')
-         .then(students => dispatch(receiveStudents(students.data)))
-         .catch(console.error)
-    }
-}
-
 export const createStudent = (body) => {
   return (dispatch) => {
     axios.post('/api/student', body)
@@ -172,7 +163,19 @@ export const deleteStudent = (id) => {
 export const updateStudent = (body, id) => {
   return (dispatch) => {
     axios.put(`/api/student/${id}`, body)
-         .then(() => dispatch(getAllStudents()))
+         .then(() => dispatch(fetchStudents()))
+         .then(() => {
+           const path = `/admin/student`;
+           browserHistory.push(path);
+         })
+         .catch(console.error)
+    }
+}
+
+export const fetchStudents = () => {
+  return (dispatch) => {
+    axios.get('/api/students')
+         .then(students => dispatch(receiveStudents(students.data)))
          .catch(console.error)
     }
 }

@@ -35,6 +35,12 @@ const loadData = () => {
     .catch(console.error)
 }
 
+const loadDisciplines = () => {
+  axios.get('/api/disciplines')
+    .then(disciplines => store.dispatch(receiveDisciplines(disciplines.data)))
+    .catch(console.error)
+}
+
 const loadSingleCampus = (nextState, replace, done) => {
   axios.get(`/api/campus/${nextState.params.id}`)
       .then(campus => store.dispatch(receiveCampus(campus.data)))
@@ -76,7 +82,7 @@ render(
         <Route path='campus/:id' component={SingleCampusContainer} onEnter={loadSingleCampus} />
         <Route path='students' component={StudentsContainer} />
         <Route path='student/:id' component={SingleStudentContainer} onEnter={loadSingleStudent} />
-        <Route path='disciplines' component={DisciplineContainer} />
+        <Route path='disciplines' component={DisciplineContainer} onEnter={loadDisciplines} />
         <Route path='disciplines/:name' component={SingleDisciplineContainer} onEnter={loadSingleDiscipline} />
         <Route path='admin/:type' component={AdminContainer} />
         <Route path='edit/:type/:id' component={EditContainer} onEnter={loadSingleEdit} />

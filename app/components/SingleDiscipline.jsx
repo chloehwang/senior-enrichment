@@ -9,7 +9,7 @@ export default function(props) {
 
   const disciplineCard = discipline && [(
       <Panel key={discipline.id}>
-        <img className="img-small" src="/img/1-girl.png" />
+        <img className="img-small" src={discipline.image} />
         <h2>Specializing Schools</h2>
         <div className="float-left">
           <ul>
