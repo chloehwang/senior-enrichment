@@ -42,7 +42,8 @@ const campusReducer = (state = campusInitialState, action) => {
 
 //DISCIPLINE REDUCER
 const disciplineInitialState = {
-  disciplines: []
+  disciplines: [],
+  selected: {}
 }
 
 const disciplineReducer = (state = disciplineInitialState, action) => {
@@ -51,6 +52,10 @@ const disciplineReducer = (state = disciplineInitialState, action) => {
   switch (action.type) {
     case "RECEIVE_DISCIPLINES":
       newState.disciplines = action.disciplines;
+      break;
+
+    case "RECEIVE_DISCIPLINE":
+      newState.selected = action.discipline;
       break;
 
     default: return state

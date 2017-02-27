@@ -35,6 +35,10 @@
   width: 70%;
 }
 
+.float-left {
+  float: left
+}
+
 h3{
   margin-top: 0;
 }

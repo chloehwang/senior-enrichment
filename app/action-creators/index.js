@@ -9,6 +9,13 @@ export const receiveDisciplines = (disciplines) => {
   }
 }
 
+export const receiveDiscipline = (discipline) => {
+  return {
+    type: "RECEIVE_DISCIPLINE",
+    discipline
+  }
+}
+
 //CAMPUS
 export const receiveCampuses = (campuses) => {
   return {
@@ -86,7 +93,10 @@ export const createCampus = (body) => {
 export const deleteCampus = (id) => {
   return (dispatch) => {
     axios.delete(`/api/campus/${id}`)
-         .then(() => dispatch(removeCampus(id)))
+         .then(() => {
+           dispatch(removeCampus(id));
+           dispatch(fetchStudents())
+          })
          .catch(console.error)
     }
 }
@@ -131,14 +141,10 @@ export const removeStudent = (id) => {
   }
 }
 
-export const getAllStudents = () => {
+export const fetchStudents = () => {
   return (dispatch) => {
     axios.get('/api/students')
          .then(students => dispatch(receiveStudents(students.data)))
-         .then(() => {
-            const path = `/admin/student`;
-            browserHistory.push(path);
-         })
          .catch(console.error)
     }
 }

@@ -1,6 +1,6 @@
 'use strict'
 const api = require('express').Router()
-const db = require('../db') //syncing db
+const db = require('../db') //need here for syncing db
 const { Student, Campus, Discipline } = require('../db/models')
 
 
@@ -8,6 +8,12 @@ api.get('/disciplines', function(req, res, next) {
 	Discipline.findAll()
 				.then(disciplines => res.send(disciplines))
 				.catch(next)
+})
+
+api.get('/disciplines/:name', function(req, res, next) {
+	Discipline.scope('populated').findOne({where: {name: req.params.name}})
+		.then(disc => res.send(disc))
+		.catch(next)
 })
 
 api.get('/campuses', function(req, res, next) {
