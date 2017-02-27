@@ -40,6 +40,24 @@ const campusReducer = (state = campusInitialState, action) => {
   return newState
 };
 
+//DISCIPLINE REDUCER
+const disciplineInitialState = {
+  disciplines: []
+}
+
+const disciplineReducer = (state = disciplineInitialState, action) => {
+  const newState = Object.assign({}, state);
+
+  switch (action.type) {
+    case "RECEIVE_DISCIPLINES":
+      newState.disciplines = action.disciplines;
+      break;
+
+    default: return state
+  }
+  return newState
+};
+
 //STUDENT REDUCER
 const studentInitialState = {
   students: [],
@@ -74,5 +92,6 @@ const studentReducer = (state = studentInitialState, action) => {
 
 export default combineReducers({
   campus: campusReducer,
-  student: studentReducer
+  student: studentReducer,
+  discipline: disciplineReducer
 })

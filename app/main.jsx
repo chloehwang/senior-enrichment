@@ -7,7 +7,7 @@ import { Provider } from 'react-redux'
 //AXIOS, REDUX, STORE
 import axios from 'axios'
 import store from './store'
-import { receiveCampuses, receiveCampus, receiveStudents, receiveStudent } from './action-creators'
+import { receiveCampuses, receiveCampus, receiveStudents, receiveStudent, receiveDisciplines } from './action-creators'
 
 //REACT COMPONENTS
 import App from './components/App'
@@ -23,11 +23,13 @@ import SingleStudentContainer from './containers/SingleStudentContainer'
 const loadData = () => {
   const fetchCampuses = axios.get('/api/campuses')
   const fetchStudents = axios.get('/api/students')
+  const fetchDisciplines = axios.get('/api/disciplines')
 
-  Promise.all([fetchCampuses, fetchStudents])
-    .then(([campuses, students]) => {
+  Promise.all([fetchCampuses, fetchStudents, fetchDisciplines])
+    .then(([campuses, students, disciplines]) => {
       store.dispatch(receiveCampuses(campuses.data))
       store.dispatch(receiveStudents(students.data))
+      store.dispatch(receiveDisciplines(disciplines.data))
     })
     .catch(console.error)
 }

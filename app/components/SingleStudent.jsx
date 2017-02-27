@@ -17,7 +17,9 @@ export default function(props) {
             </tr>
             <tr>
               <td><h3>Interests:</h3></td>
-              <td><h3>{student.specialties}</h3></td>
+              <td><h3>
+                { student.specialties.map((spec, i) => <span key={i}><Link to={`/disciplines/${spec}`}>{spec}</Link> / </span>) }
+              </h3></td>
             </tr>
             <tr>
               <td><h3>Bio:</h3></td>

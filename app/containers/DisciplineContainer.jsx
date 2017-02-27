@@ -4,7 +4,7 @@ import AllDisciplines from '../components/AllDisciplines'
 export default connect(
   (state) => {
     return {
-      students: state.student.students
+      disciplines: state.discipline.disciplines
     }
   }
 )(AllDisciplines)

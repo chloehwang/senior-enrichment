@@ -17,8 +17,9 @@ export default function(props) {
             </tr>
             <tr>
               <td><h3>Specialties:</h3></td>
-              <td><h3>{ campus.specialties.map((spec, i) =>
-            <span key={i}><Link to={`/disciplines/${spec}`}>{spec}</Link> / </span>) }</h3></td>
+              <td><h3>
+                { campus.specialties.map((spec, i) => <span key={i}><Link to={`/disciplines/${spec}`}>{spec}</Link> / </span>) }
+              </h3></td>
             </tr>
             <tr>
               <td><h3>About:</h3></td>

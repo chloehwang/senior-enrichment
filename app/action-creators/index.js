@@ -1,6 +1,14 @@
 import axios from 'axios'
 import { browserHistory } from 'react-router'
 
+//DISCIPLINE
+export const receiveDisciplines = (disciplines) => {
+  return {
+    type: "RECEIVE_DISCIPLINES",
+    disciplines
+  }
+}
+
 //CAMPUS
 export const receiveCampuses = (campuses) => {
   return {
