@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router'
 import { Panel, Button } from 'react-bootstrap'
 import DisplayCards from './DisplayCards'
 
@@ -9,7 +8,7 @@ export default function(props) {
       <Panel key={disc.id}>
         <img className="img-small" src={disc.image} />
         <h3>{disc.name}</h3>
-        <Button><Link to={`disciplines/${disc.name}`}>View Specializing Schools</Link></Button>
+        <Button bsStyle="info" href={`disciplines/${disc.name}`}>View Specializing Schools</Button>
       </Panel>
       )
   })
