@@ -2,7 +2,6 @@ import React from 'react';
 import { Grid, Row, Col } from 'react-bootstrap';
 
 export default function(props) {
-
   const toDisplay = props.cards && props.cards.map((card, i) =>
     <Col
       xs={props.xs}
@@ -14,13 +13,11 @@ export default function(props) {
     </Col>)
 
   return (
-    <div>
-      <Grid>
-        <Row className="show-grid">
-          {toDisplay}
-        </Row>
-      </Grid>
-    </div>
+    <Grid>
+      <Row className="show-grid">
+        {toDisplay}
+      </Row>
+    </Grid>
   )
 }
 

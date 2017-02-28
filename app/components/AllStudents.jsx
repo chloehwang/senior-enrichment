@@ -11,7 +11,7 @@ export default function(props) {
         <h3><Link to={`student/${student.id}`}>{student.name}</Link></h3>
         <p>Address: {student.city}-{student.planet}<br />
            Interests: { student.specialties.map((spec, i) =>
-            <span key={i}><Link to={`/disciplines/${spec}`}>{spec}</Link> / </span>)
+             <span key={i}><Link to={`/disciplines/${spec}`}>{spec}</Link> / </span>)
            }
         </p>
         <Button><Link to="">View Student's Projects</Link></Button>
@@ -22,7 +22,7 @@ export default function(props) {
   return (
     <div className="body">
       <h1>Our Students</h1>
-      {<DisplayCards cards={studentCards} sm={12} md={6}/>}
+      <DisplayCards cards={studentCards} sm={12} md={6} />
     </div>
   )
 }

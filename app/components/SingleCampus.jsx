@@ -4,8 +4,8 @@ import { Panel, Table } from 'react-bootstrap'
 import DisplayCards from './DisplayCards'
 import List from './List'
 
-export default function(props) {
-  const campus = props.selected;
+export default function({ selected, student, enrolledStudents }) {
+  const campus = selected;
   const campusCard = campus && [(
       <Panel key={campus.id}>
         <img className="img-small" src={campus.image} />
@@ -31,13 +31,13 @@ export default function(props) {
     )]
 
   return (
-    <div className={props.student ? null : "body"}>
-      { props.student ? null : <h1>{campus.name}</h1> }
-      <DisplayCards cards={campusCard} sm={12} md={12}/>
-      { props.student ? null :
+    <div className={student ? null : "body"}>
+      { student ? null : <h1>{campus.name}</h1> }
+      <DisplayCards cards={campusCard} sm={12} md={12} />
+      { student ? null :
           <div>
             <h2>Enrolled Students</h2>
-            <List listItems={props.enrolledStudents} type="student" />
+            <List listItems={enrolledStudents} type="student" />
           </div>
       }
     </div>

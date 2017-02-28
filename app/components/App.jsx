@@ -1,17 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react'
 import Navbar from './Navbar'
 
-export default class Main extends Component {
-  constructor() {
-    super()
-  }
+export default function(props) {
+  return (
+    <div>
+      <Navbar />
+      { props.children && React.cloneElement(props.children, props) }
+    </div>
+  )
 
-  render() {
-    return (
-      <div>
-        <Navbar />
-        { this.props.children && React.cloneElement(this.props.children, this.props) }
-      </div>
-    )
-  }
 }

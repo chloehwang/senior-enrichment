@@ -9,8 +9,7 @@ export default function(props) {
   <form onSubmit={props.handleInput}>
     <FormGroup validationState={invalidName}>
       <ControlLabel>Name</ControlLabel>
-      <FormControl type="text" name="name" defaultValue={name}
-        />
+      <FormControl type="text" name="name" defaultValue={name} />
       { invalidName && <HelpBlock>Name cannot be blank.</HelpBlock> }
       <FormControl.Feedback />
     </FormGroup>

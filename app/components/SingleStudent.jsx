@@ -4,8 +4,8 @@ import { Panel, Table } from 'react-bootstrap';
 import DisplayCards from './DisplayCards'
 import SingleCampus from './SingleCampus'
 
-export default function(props) {
-  const student = props.selected;
+export default function({ selected }) {
+  const student = selected;
   const studentCard = student && [(
       <Panel key={student.id}>
         <img className="img-small" src={student.image} />

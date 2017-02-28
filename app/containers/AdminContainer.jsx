@@ -14,11 +14,11 @@ export default connect(
   },
   (dispatch) => {
     return {
-      handleSubmit: function(body, type) {
+      handleSubmit: (body, type) => {
         if (type === "campus") dispatch(createCampus(body))
         else {dispatch(createStudent(body))}
       },
-      handleDelete: function (e, type) {
+      handleDelete: (e, type) => {
         e.preventDefault();
         if (type === "campus") dispatch(deleteCampus(e.target.value))
         else {dispatch(deleteStudent(e.target.value))}
@@ -38,16 +38,14 @@ export default connect(
 
     render() {
       return (
-        <div className="body">
-          <AdminPage
-            type={this.props.type}
-            campuses={this.props.campuses}
-            students={this.props.students}
-            handleInput={this.handleInput}
-            handleDelete={this.props.handleDelete}
-            inputCheck={this.state}
-          />
-        </div>
+        <AdminPage
+          type={this.props.type}
+          campuses={this.props.campuses}
+          students={this.props.students}
+          handleInput={this.handleInput}
+          handleDelete={this.props.handleDelete}
+          inputCheck={this.state}
+        />
         )
     }
 })

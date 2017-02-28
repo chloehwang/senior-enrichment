@@ -1,10 +1,10 @@
-import React from 'react';
+import React from 'react'
 import { Link } from 'react-router'
-import { Panel } from 'react-bootstrap';
+import { Panel } from 'react-bootstrap'
 import DisplayCards from './DisplayCards'
 
-export default function(props) {
-  const discipline = props.selected;
+export default function({ selected }) {
+  const discipline = selected;
   const campuses = discipline.campuses;
 
   const disciplineCard = discipline && [(
@@ -28,7 +28,7 @@ export default function(props) {
   return (
     <div className="body">
       <h1>{discipline.name}</h1>
-      <DisplayCards cards={disciplineCard} sm={12} md={12}/>
+      <DisplayCards cards={disciplineCard} sm={12} md={12} />
     </div>
   )
 }

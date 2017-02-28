@@ -11,7 +11,7 @@ export default function(props) {
         <h3><Link to={`campus/${campus.id}`}>{campus.name}</Link></h3>
         <p>Address: {campus.city}-{campus.planet}<br />
            Specialties: { campus.specialties.map((spec, i) =>
-            <span key={i}><Link to={`/disciplines/${spec}`}>{spec}</Link> / </span>)
+             <span key={i}><Link to={`/disciplines/${spec}`}>{spec}</Link> / </span>)
            }
         </p>
         <Button bsStyle="primary">Tour Campus</Button>

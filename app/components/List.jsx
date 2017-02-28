@@ -42,7 +42,7 @@ const rows = listItems && listItems.map(item => {
       { rows }
     </tbody>
   </Table>
-)
+  )
 }
 
 

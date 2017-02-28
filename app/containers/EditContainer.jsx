@@ -22,16 +22,16 @@ export default connect(
     const id = ownProps.params.id;
 
     return {
-      handleSubmit: function(body, type) {
+      handleSubmit: (body, type) => {
         if (type === "campus") dispatch(updateCampus(body, id))
         else {dispatch(updateStudent(body, id))}
       },
-      handleDelete: function (e) {
+      handleDelete: (e) => {
         e.preventDefault();
         dispatch(deleteStudent(e.target.value))
         dispatch(removeCampusStudent(e.target.value))
       },
-      handleAdd: function(e) {
+      handleAdd: (e) => {
         e.preventDefault();
         dispatch(changeStudentSchool({campusId: id}, e.target.item.value))
       }
@@ -56,25 +56,23 @@ export default connect(
     }
 
     render () {
-      let campusStudents = this.props.campusStudents;
+      let campusStudents =       this.props.campusStudents;
       let enrolledStudentNames = campusStudents && campusStudents.map(student => student.name);
-      let students = enrolledStudentNames && this.props.students.filter(student =>
+      let students =             enrolledStudentNames && this.props.students.filter(student =>
         enrolledStudentNames.indexOf(student.name) === -1);
 
       return (
-        <div className="body">
-          <EditPage
-            handleInput={this.handleInput}
-            handleDelete={this.props.handleDelete}
-            handleAdd={this.props.handleAdd}
-            selectedName={this.state.name}
-            inputCheck={this.state}
-            type={this.props.type}
-            campuses={this.props.campuses}
-            campusStudents={campusStudents}
-            students={students}
-          />
-        </div>
+        <EditPage
+          handleInput={this.handleInput}
+          handleDelete={this.props.handleDelete}
+          handleAdd={this.props.handleAdd}
+          selectedName={this.state.name}
+          inputCheck={this.state}
+          type={this.props.type}
+          campuses={this.props.campuses}
+          campusStudents={campusStudents}
+          students={students}
+        />
         )
     }
 })
