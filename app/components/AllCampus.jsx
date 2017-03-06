@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router'
-import { Panel, Button } from 'react-bootstrap'
+import { Panel, Button, Breadcrumb } from 'react-bootstrap'
 import DisplayCards from './DisplayCards'
 
 export default function(props) {
@@ -14,13 +14,24 @@ export default function(props) {
              <span key={i}><Link to={`/disciplines/${spec}`}>{spec}</Link> / </span>)
            }
         </p>
-        <Button bsStyle="primary">Tour Campus</Button>
+        <Button className="campus-btn" bsStyle="primary">TOUR CAMPUS</Button>
       </Panel>
       )
   })
 
   return (
     <div className="body">
+      <Breadcrumb>
+        <Breadcrumb.Item href="#">
+          Home
+        </Breadcrumb.Item>
+        <Breadcrumb.Item href="http://getbootstrap.com/components/#breadcrumbs">
+          Library
+        </Breadcrumb.Item>
+        <Breadcrumb.Item active>
+          Data
+        </Breadcrumb.Item>
+      </Breadcrumb>
       <h1>Our Campuses</h1>
       <DisplayCards cards={campusCards} sm={12} md={6}/>
     </div>

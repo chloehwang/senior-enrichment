@@ -6,7 +6,7 @@ import { LinkContainer } from 'react-router-bootstrap'
 export default function() {
 
   return (
-    <Navbar collapseOnSelect>
+    <Navbar collapseOnSelect fixedTop>
       <Navbar.Header>
         <Navbar.Brand>
           <Link to="/home">Planet Academy</Link>

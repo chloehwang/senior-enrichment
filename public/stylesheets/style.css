@@ -1,5 +1,50 @@
 .body {
-  padding: 25px 5% 3% 5%
+  padding: 75px 5% 3% 5%;
+  background-color: #92b0cf;
+  font-family: 'Inconsolata', monospace;
+}
+
+a{
+  color: white
+}
+
+.campus-btn {
+  padding: 1.5% 7%;
+  margin-top: 5px;
+  background-color: #a2c0df;
+  border: 3px solid #607890;
+  color: #4f6376
+}
+
+.btn-default, .form-control {
+  background-color: #607890;
+  border: 2px solid #a9c1d9;
+  color: white
+}
+
+.btn-default {
+  padding: 5px 12px;
+}
+
+
+.panel {
+ background-color: #a2c0df;
+ border: none;
+ padding: 3%
+}
+
+.breadcrumb {
+  background-color: #92b0cf
+}
+
+.navbar-default {
+  background-color:#607890;
+  border: none;
+  font-family: 'Inconsolata', monospace;
+}
+
+.navbar-default .navbar-nav>li>a, .navbar-default .navbar-brand {
+  color: white
 }
 
 .img-small {
